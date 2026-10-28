@@ -43,7 +43,7 @@ header{background:var(--branco);border-bottom:1px solid var(--linha);position:st
 .topo{max-width:1100px;margin:0 auto;padding:.9rem 1.25rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}
 .marca{font-family:var(--serif);font-weight:800;font-size:1.55rem;letter-spacing:-.01em;color:var(--verde-esc);display:flex;align-items:center;gap:.6rem;background:none;border:0;cursor:pointer}
 .marca span{color:var(--vermelho)}
-.logo{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;text-align:center;font-size:.55rem;line-height:1.1;font-family:var(--sans)}
+.logo{width:42px;height:42px;border-radius:50%;object-fit:contain;flex-shrink:0}
 nav{display:flex;gap:.3rem}
 nav button{font:inherit;font-weight:700;background:none;border:0;padding:.55rem 1rem;cursor:pointer;color:var(--suave);border-bottom:4px solid transparent}
 nav button:hover{color:var(--texto)}
@@ -53,11 +53,24 @@ main{max-width:1100px;margin:0 auto;padding:2.5rem 1.25rem 4rem}
 .aba[hidden]{display:none}
 
 /* Início */
-.hero{display:grid;grid-template-columns:1.2fr .8fr;gap:2.5rem;align-items:center;padding:1rem 0 2rem}
-.hero h1{font-family:var(--serif);font-weight:800;font-size:clamp(2.6rem,6vw,4.4rem);line-height:1.02;letter-spacing:-.02em;color:var(--verde-esc)}
-.hero p{margin:1.2rem 0 1.6rem;max-width:52ch;color:var(--suave);font-size:1.1rem}
-.btn{display:inline-block;font:inherit;font-weight:700;background:var(--vermelho);color:var(--branco);border:0;padding:.8rem 1.6rem;border-radius:4px;cursor:pointer}
-.btn:hover{background:var(--vermelho-esc)}
+.hero{background:var(--branco);border:1px solid var(--linha);border-radius:4px;overflow:hidden;margin-bottom:1.5rem}
+.hero .faixa{height:12px}
+.hero-corpo{padding:clamp(2.5rem,7vw,5rem) clamp(1.25rem,5vw,3.5rem);text-align:center}
+.hero .selo{font-weight:700;letter-spacing:.14em;text-transform:uppercase;font-size:.8rem;color:var(--vermelho);margin-bottom:1rem}
+.hero h1{font-family:var(--serif);font-weight:800;font-size:clamp(2.6rem,6vw,4.4rem);line-height:1.02;letter-spacing:-.02em;color:var(--verde-esc);max-width:15ch;margin:0 auto}
+.hero h1 em{font-style:normal;color:var(--vermelho)}
+.hero .chamada{margin:1.4rem auto 2rem;max-width:52ch;color:var(--suave);font-size:1.15rem}
+.acoes{display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap}
+.btn{display:inline-block;font:inherit;font-weight:700;background:var(--vermelho);color:var(--branco);border:2px solid var(--vermelho);padding:.8rem 1.6rem;border-radius:4px;cursor:pointer}
+.btn:hover{background:var(--vermelho-esc);border-color:var(--vermelho-esc)}
+.btn.sec{background:var(--branco);color:var(--verde-esc);border-color:var(--verde-esc)}
+.btn.sec:hover{background:var(--verde-esc);color:var(--branco)}
+.destaques{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.5rem}
+.destaque{background:var(--branco);border:1px solid var(--linha);border-top:6px solid var(--verde);border-radius:4px;padding:1.4rem 1.5rem 1.6rem}
+.destaque:nth-child(2){border-top-color:var(--linha)}
+.destaque:nth-child(3){border-top-color:var(--vermelho)}
+.destaque h3{font-family:var(--serif);font-size:1.25rem;margin-bottom:.4rem}
+.destaque p{color:var(--suave);font-size:.95rem}
 .foto{aspect-ratio:4/5;background:var(--branco);border:2px dashed var(--destaque-borda);border-radius:6px;display:grid;place-items:center;text-align:center;padding:1rem;color:#5a4a00;font-weight:600;background-image:linear-gradient(90deg,rgba(0,140,69,.08) 33%,transparent 33% 66%,rgba(205,33,42,.08) 66%)}
 body.limpo .foto{border-style:solid;border-color:var(--linha)}
 
@@ -65,12 +78,14 @@ h2.titulo{font-family:var(--serif);font-weight:800;font-size:clamp(1.9rem,4vw,2.
 .sub{color:var(--suave);margin-bottom:2rem;max-width:60ch}
 
 /* Produtos */
-.grade{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:1.5rem}
-.produto{background:var(--branco);border:1px solid var(--linha);border-top:6px solid var(--verde);border-radius:4px;overflow:hidden}
+.grade{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem}
+.produto{display:grid;grid-template-columns:210px 1fr;align-items:start;background:var(--branco);border:1px solid var(--linha);border-top:6px solid var(--verde);border-radius:4px;overflow:hidden}
 .produto:nth-child(3n+2){border-top-color:var(--linha)}
 .produto:nth-child(3n){border-top-color:var(--vermelho)}
-.produto .foto{aspect-ratio:1/1;border-radius:0;border-width:0 0 2px 0;font-size:.9rem}
-.produto .corpo{padding:1.1rem 1.2rem 1.3rem}
+.produto .foto{aspect-ratio:512/770;border-radius:0;border-width:0 1px 0 0;font-size:.9rem;overflow:hidden}
+.produto .foto.tem-img{padding:0;border-style:solid;border-color:var(--linha);background-image:none}
+.produto .foto img{width:100%;height:100%;object-fit:cover;display:block}
+.produto .corpo{padding:1.3rem 1.4rem}
 .produto h3{font-family:var(--serif);font-size:1.25rem;margin-bottom:.4rem}
 .produto p{color:var(--suave);font-size:.95rem;margin-bottom:.6rem}
 .produto .linha{font-size:.9rem;border-top:1px solid var(--linha);padding-top:.6rem;margin-top:.4rem}
@@ -86,7 +101,7 @@ h2.titulo{font-family:var(--serif);font-weight:800;font-size:clamp(1.9rem,4vw,2.
 .bloco li{margin-bottom:.4rem}
 
 /* Processo */
-.processo-layout{display:grid;grid-template-columns:1.2fr .8fr;gap:2.5rem;align-items:start}
+.processo-layout{max-width:760px}
 .etapas{list-style:none;counter-reset:etapa}
 .etapas li{counter-increment:etapa;position:relative;padding:.15rem 0 2rem 3.6rem;min-height:2.6rem}
 .etapas li:last-child{padding-bottom:0}
@@ -95,7 +110,6 @@ h2.titulo{font-family:var(--serif);font-weight:800;font-size:clamp(1.9rem,4vw,2.
 .etapas li:not(:last-child)::after{content:"";position:absolute;left:calc(1.3rem - 2px);top:2.6rem;bottom:0;width:4px;background:var(--verde);opacity:.35}
 .etapas h3{font-family:var(--serif);font-size:1.3rem;margin-bottom:.25rem;line-height:1.3}
 .etapas p{color:var(--suave)}
-.processo-layout .foto{aspect-ratio:4/5;position:sticky;top:6rem}
 
 /* Contato */
 .contato-layout{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;align-items:start}
@@ -116,28 +130,26 @@ footer{background:var(--texto);color:#e8e8e0;padding:2rem 1.25rem;text-align:cen
 footer .faixa{max-width:160px;margin:0 auto 1rem;height:6px}
 
 @media (max-width:760px){
-  .hero,.processo-layout,.contato-layout{grid-template-columns:1fr}
-  .processo-layout .foto{position:static;aspect-ratio:16/10}
+  .contato-layout,.grade{grid-template-columns:1fr}
   .foto{aspect-ratio:16/10}
   nav{width:100%}
   nav button{flex:1;padding:.5rem .2rem;font-size:.85rem}
+}
+@media (max-width:980px){
+  .grade{grid-template-columns:1fr}
+}
+@media (max-width:560px){
+  .produto{grid-template-columns:1fr}
+  .produto .foto{width:min(100%,240px);margin:1.1rem auto 0;border-width:1px}
 }
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 </style>
 </head>
 <body>
-
-<div class="faixa" aria-hidden="true"><i></i><i></i><i></i></div>
-
-<div class="aviso" role="note">
-  <span>Tudo que aparece com <span class="preencher">fundo amarelo</span> é um campo para você preencher. Edite o texto direto no código (Ctrl+F por "PREENCHER").</span>
-  <button type="button" id="alternar">Ocultar destaques amarelos</button>
-</div>
-
 <header>
   <div class="topo">
     <button class="marca" type="button" data-aba="inicio" aria-label="Ir para o início">
-      <span class="logo foto" style="aspect-ratio:1/1;padding:0;font-size:.5rem">LOGO<br>[PREENCHER]</span>
+      <img src="logo.png" class="logo" alt="Logo Pedro Aventáis">
       Pedro <span>Aventáis</span>
     </button>
     <nav role="tablist" aria-label="Seções do site">
@@ -155,54 +167,53 @@ footer .faixa{max-width:160px;margin:0 auto 1rem;height:6px}
   <!-- INÍCIO -->
   <section class="aba" id="inicio" role="tabpanel">
     <div class="hero">
-      <div>
-        <h1>Aventais feitos com capricho.</h1>
-        <p><span class="preencher">[PREENCHER: frase de apresentação da empresa. Ex.: o que a Pedro Aventáis faz, para quem e qual o diferencial]</span></p>
-        <button class="btn" type="button" data-aba="produtos">Ver produtos</button>
+      <div class="faixa" aria-hidden="true"><i></i><i></i><i></i></div>
+      <div class="hero-corpo">
+        <p class="selo">Aventais profissionais</p>
+        <h1>Aventais feitos com <em>capricho.</em></h1>
+        <p class="chamada"><span >Vestindo profissionais, valorizando pessoas e protegendo quem faz acontecer.</span></p>
+        <div class="acoes">
+          <button class="btn" type="button" data-aba="produtos">Ver produtos</button>
+          <button class="btn sec" type="button" data-aba="contato">Pedir orçamento</button>
+        </div>
       </div>
-      <div class="foto">[PREENCHER: foto principal da empresa ou de um avental]</div>
+    </div>
+
+    <div class="destaques">
+      <div class="destaque">
+        <h3>Qualidade em cada etapa</h3>
+        <p><span >Do desenho do modelo à entrega, cada avental passa por seis etapas de cuidado e revisão.</span></p>
+      </div>
+      <div class="destaque">
+        <h3>Feito para o dia a dia</h3>
+        <p><span >Alças ajustáveis, bolsos funcionais e tecidos resistentes para trabalhar com conforto e segurança.</span></p>
+      </div>
+      <div class="destaque">
+        <h3>Com a cara da sua marca</h3>
+        <p><span >Bordado ou estampa com a identidade da sua empresa, como no modelo feito em parceria com a Saporex Alimentos.</span></p>
+      </div>
     </div>
   </section>
 
   <!-- PRODUTOS -->
   <section class="aba" id="produtos" role="tabpanel" hidden>
     <h2 class="titulo">Nossos produtos</h2>
-    <p class="sub"><span class="preencher">[PREENCHER: texto curto apresentando a linha de produtos]</span></p>
+    <p class="sub"><span >Aqui você vai se deparar com alguns exemplos de aventáis da empresa, contendo não só nosso avental principal mas aventáis de parcerias com empresas e marcas.</span></p>
 
     <div class="grade">
       <article class="produto">
-        <div class="foto">[PREENCHER: foto do produto 1]</div>
+        <div class="foto tem-img"><img src="avental1.png" alt="Avental verde Saporex Alimentos com bordado, alça ajustável e bolsos"></div>
         <div class="corpo">
-          <h3><span class="preencher">[PREENCHER: nome do produto 1]</span></h3>
-          <p><span class="preencher">[PREENCHER: descrição, material e uso]</span></p>
-          <p class="linha"><span class="preencher">[PREENCHER: tamanhos / cores / preço]</span></p>
+          <h3><span >Avental Saporex</span></h3>
+          <p><span >Avental de peito com alça ajustável, bolsos frontais e amarração na cintura, feito em parceria com a Saporex Alimentos. Leva bordado de alta qualidade com a marca da parceira e um pequeno detalhe tricolor no bolso. Ideal para cozinhas, restaurantes e indústrias de alimentos.</span></p>
         </div>
       </article>
 
       <article class="produto">
-        <div class="foto">[PREENCHER: foto do produto 2]</div>
+        <div class="foto tem-img"><img src="avental2.png" alt="Avental preto Pedro Aventáis com bordado, alça ajustável e bolsos"></div>
         <div class="corpo">
-          <h3><span class="preencher">[PREENCHER: nome do produto 2]</span></h3>
-          <p><span class="preencher">[PREENCHER: descrição, material e uso]</span></p>
-          <p class="linha"><span class="preencher">[PREENCHER: tamanhos / cores / preço]</span></p>
-        </div>
-      </article>
-
-      <article class="produto">
-        <div class="foto">[PREENCHER: foto do produto 3]</div>
-        <div class="corpo">
-          <h3><span class="preencher">[PREENCHER: nome do produto 3]</span></h3>
-          <p><span class="preencher">[PREENCHER: descrição, material e uso]</span></p>
-          <p class="linha"><span class="preencher">[PREENCHER: tamanhos / cores / preço]</span></p>
-        </div>
-      </article>
-
-      <article class="produto">
-        <div class="foto">[PREENCHER: foto do produto 4]</div>
-        <div class="corpo">
-          <h3><span class="preencher">[PREENCHER: nome do produto 4]</span></h3>
-          <p><span class="preencher">[PREENCHER: descrição, material e uso]</span></p>
-          <p class="linha"><span class="preencher">[PREENCHER: tamanhos / cores / preço]</span></p>
+          <h3><span >Avental Pedro Aventáis</span></h3>
+          <p><span >Nosso avental principal: um modelo versátil, resistente e confortável, com alça ajustável e bolsos funcionais. Pode receber bordado ou estampa personalizada e atende cozinhas, padarias, cafés, oficinas e equipes de atendimento.</span></p>
         </div>
       </article>
     </div>
@@ -212,36 +223,35 @@ footer .faixa{max-width:160px;margin:0 auto 1rem;height:6px}
   <!-- PROCESSO -->
   <section class="aba" id="processo" role="tabpanel" hidden>
     <h2 class="titulo">Como criamos nossos aventais</h2>
-    <p class="sub"><span class="preencher">[PREENCHER: texto curto sobre o cuidado da empresa em cada etapa da fabricação]</span></p>
+    <p class="sub"><span >Cada avental passa por seis etapas, e em todas elas o cuidado com os detalhes vem em primeiro lugar, do desenho do modelo até a entrega ao cliente.</span></p>
 
     <div class="processo-layout">
       <ol class="etapas">
         <li>
           <h3>Criação do modelo</h3>
-          <p><span class="preencher">[PREENCHER: como o modelo é desenhado e testado]</span></p>
+          <p><span >Desenhamos cada modelo pensando no conforto e na rotina de quem trabalha. Antes de produzir em quantidade, fazemos uma peça-piloto e testamos o caimento, o tamanho dos bolsos e a posição das alças.</span></p>
         </li>
         <li>
           <h3>Escolha do tecido</h3>
-          <p><span class="preencher">[PREENCHER: tipos de tecido usados e como são selecionados]</span></p>
+          <p><span >Usamos tecidos resistentes, duráveis e fáceis de lavar. Cada lote é conferido quanto à cor, à textura e ao acabamento antes de ser aprovado para a produção.</span></p>
         </li>
         <li>
           <h3>Corte</h3>
-          <p><span class="preencher">[PREENCHER: como as peças são cortadas e com quais máquinas]</span></p>
+          <p><span >As peças são cortadas com máquinas de corte, seguindo moldes padronizados. Assim, todos os aventais têm a mesma medida e o desperdício de tecido é mínimo.</span></p>
         </li>
         <li>
           <h3>Costura</h3>
-          <p><span class="preencher">[PREENCHER: como as peças são costuradas e montadas]</span></p>
+          <p><span >Costureiras experientes montam as peças com máquinas de costura reta e overloque, reforçando os pontos que mais sofrem esforço, como alças e bolsos.</span></p>
         </li>
         <li>
           <h3>Acabamento e qualidade</h3>
-          <p><span class="preencher">[PREENCHER: revisão das peças, bordado/estampa e controle de qualidade]</span></p>
+          <p><span >Cada peça é revisada à mão: conferimos costuras, medidas e aparência. O bordado ou a estampa com a marca do cliente é aplicado e checado antes da aprovação final.</span></p>
         </li>
         <li>
           <h3>Embalagem e entrega</h3>
-          <p><span class="preencher">[PREENCHER: como o pedido é embalado e enviado ao cliente]</span></p>
+          <p><span >Os aventais são dobrados e embalados com cuidado, individualmente ou em lotes, conforme o pedido, e enviados dentro do prazo combinado com o cliente.</span></p>
         </li>
       </ol>
-      <div class="foto">[PREENCHER: foto ou vídeo da fábrica / da produção]</div>
     </div>
     <!-- Para mudar as etapas, edite os títulos (h3) ou copie/cole um bloco <li>. -->
   </section>
@@ -251,25 +261,48 @@ footer .faixa{max-width:160px;margin:0 auto 1rem;height:6px}
     <h2 class="titulo">Sobre a Pedro Aventáis</h2>
 
     <div class="quem">
-      <p><span class="preencher">[PREENCHER: Quem somos. História da empresa, ano de fundação, cidade, o que produz e para quem]</span></p>
+      <p><span >A Pedro Aventais nasceu com o propósito
+de oferecer aventais de qualidade, proporcionando proteção, conforto e
+praticidade para profissionais de diferentes áreas.
+
+<br><br>
+
+Desde o início, buscamos desenvolver
+produtos que atendam às necessidades dos nossos clientes, sempre com atenção
+aos detalhes e compromisso com a qualidade. Acreditamos que cada profissional
+merece trabalhar com segurança e confiança, e queremos fazer parte dessa
+jornada.
+
+<br><br>
+
+Nossa empresa valoriza o respeito, a
+responsabilidade, o trabalho em equipe e a inovação. Por isso, estamos sempre
+buscando melhorar nossos produtos e serviços, construindo relacionamentos de
+confiança com nossos clientes e parceiros.
+
+<br><br>
+
+Nosso objetivo é crescer e nos tornar
+referência no mercado de aventais, oferecendo produtos que unem qualidade,
+resistência e funcionalidade.</span></p>
     </div>
 
     <div class="tres">
       <div class="bloco">
         <h3>Missão</h3>
-        <p><span class="preencher">[PREENCHER: missão da empresa. Por que ela existe e o que entrega aos clientes]</span></p>
+        <p><span >Proteger, vestir e valorizar quem faz acontecer.</span></p>
       </div>
       <div class="bloco v">
         <h3>Visão</h3>
-        <p><span class="preencher">[PREENCHER: visão da empresa. Onde ela quer chegar nos próximos anos]</span></p>
+        <p><span >Ser referência em aventais, unindo qualidade, inovação e confiança.</span></p>
       </div>
       <div class="bloco r">
         <h3>Valores</h3>
         <ul>
-          <li><span class="preencher">[PREENCHER: valor 1]</span></li>
-          <li><span class="preencher">[PREENCHER: valor 2]</span></li>
-          <li><span class="preencher">[PREENCHER: valor 3]</span></li>
-          <li><span class="preencher">[PREENCHER: valor 4]</span></li>
+          <li><span >Qualidade</span></li>
+          <li><span >Respeito</span></li>
+          <li><span >Inovação</span></li>
+          <li><span >Responsabilidade</span></li>
         </ul>
       </div>
     </div>
@@ -279,20 +312,18 @@ footer .faixa{max-width:160px;margin:0 auto 1rem;height:6px}
   <!-- CONTATO -->
   <section class="aba" id="contato" role="tabpanel" hidden>
     <h2 class="titulo">Fale com a Pedro Aventáis</h2>
-    <p class="sub"><span class="preencher">[PREENCHER: texto convidando o cliente a pedir orçamento ou tirar dúvidas]</span></p>
+    <p class="sub"><span >Em caso de dúvidas ou interesse, entre em contato conosco.</span></p>
 
     <div class="contato-layout">
       <dl class="dados">
         <dt>Endereço</dt>
-        <dd><span class="preencher">[PREENCHER: rua, número, bairro, cidade e estado]</span></dd>
+        <dd><span >Rua Duque de Caxias, nº 830,<br>Centro, Timbó – SC, CEP 89120-000</span></dd>
         <dt>Telefone / WhatsApp</dt>
-        <dd><span class="preencher">[PREENCHER: telefone com DDD]</span></dd>
+        <dd><span >(47) xxxx-xxxx</span></dd>
         <dt>E-mail</dt>
-        <dd><span class="preencher">[PREENCHER: e-mail da empresa]</span></dd>
-        <dt>Horário de atendimento</dt>
-        <dd><span class="preencher">[PREENCHER: dias e horários]</span></dd>
+        <dd><span >pedroaventais@gmail.com</span></dd>
         <dt>Redes sociais</dt>
-        <dd><span class="preencher">[PREENCHER: Instagram, Facebook etc.]</span></dd>
+        <dd><span >@pedroaventais</span></dd>
       </dl>
 
       <form class="mensagem" id="form-contato" action="https://formsubmit.co/pedro_ei_silva@estudante.sesisenai.org.br" method="POST">
@@ -319,7 +350,7 @@ footer .faixa{max-width:160px;margin:0 auto 1rem;height:6px}
 
 <footer>
   <div class="faixa" aria-hidden="true"><i></i><i></i><i></i></div>
-  <p>© <span class="preencher">[PREENCHER: ano]</span> Pedro Aventáis. Todos os direitos reservados.</p>
+  <p>©2001 Pedro Aventáis. Todos os direitos reservados.</p>
 </footer>
 
 <script>
